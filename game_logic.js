@@ -15,7 +15,7 @@ function setup() {
     pos = [grid.length - 1, grid.length - 1]
     // drawGrid()
     colorPrimary = Math.floor((Math.random() * dataColors.length) + 1) - 1
-    updateCanvas();
+    shuffleData();
 }
 
 // Returns solved Grid
@@ -35,7 +35,6 @@ function moveDown() {
     swapGridNumbers(pos, [pos[0] - 1, pos[1]])
     pos[0] = pos[0] - 1
     moves = moves + 1
-    updateCanvas()
 }
 
 function moveUp() {
@@ -45,7 +44,6 @@ function moveUp() {
     swapGridNumbers(pos, [pos[0] + 1, pos[1]])
     pos[0] = pos[0] + 1
     moves = moves + 1
-    updateCanvas()
 }
 
 function moveRight() {
@@ -55,7 +53,6 @@ function moveRight() {
     swapGridNumbers(pos, [pos[0], pos[1] - 1])
     pos[1] = pos[1] - 1
     moves = moves + 1
-    updateCanvas()
 }
 
 function moveLeft() {
@@ -65,7 +62,6 @@ function moveLeft() {
     swapGridNumbers(pos, [pos[0], pos[1] + 1])
     pos[1] = pos[1] + 1
     moves = moves + 1
-    updateCanvas()
 }
 
 function updateCanvas() {
@@ -106,6 +102,7 @@ function mouseClicked() {
     else {
         return;
     }
+    updateCanvas()
 }
 //test
 function keyPressed() {  // i.e evrytime i press a key!
@@ -133,6 +130,7 @@ function keyPressed() {  // i.e evrytime i press a key!
     if (played) {
         //check if he won
     }
+    updateCanvas()
 }
 // Draws the given grid over canvas
 function drawGrid() {
@@ -189,7 +187,7 @@ function resetData() {
     pos = [grid.length - 1, grid.length - 1]
     moves = 0
     select('#message').html("All the best");
-    updateCanvas()
+    shuffleData()
 }
 
 function checkWin() {
