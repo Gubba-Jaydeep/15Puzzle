@@ -3,11 +3,17 @@ var moves
 var pos
 var colorPrimary
 var init_grid = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 0]]
-
+var dimensions=[400,400]
 // Setup blank Canvas with Grid
 function setup() {
     console.log("setup");
-    var canvas = createCanvas(400, 400);
+
+    if (windowWidth < 500) {
+        dimensions=[windowWidth * 0.9, windowWidth * 0.9]
+    } else {
+        dimensions=[400, 400]
+    }
+    var canvas = createCanvas(dimensions[0], dimensions[1]);
     canvas.parent('sketch-holder');
     noLoop();
     moves = 0;
@@ -71,16 +77,16 @@ function updateCanvas() {
     checkWin()
 }
 function getPosition(dataPosition) {
-    if (dataPosition > 0 && dataPosition < 100) {
+    if (dataPosition > 0 && dataPosition < dimensions[0]/4) {
         return 0;
     }
-    if (dataPosition > 100 && dataPosition < 200) {
+    if (dataPosition > dimensions[0]/4 && dataPosition < 2*dimensions[0]/4) {
         return 1;
     }
-    if (dataPosition > 200 && dataPosition < 300) {
+    if (dataPosition > 2*dimensions[0]/4 && dataPosition < 3*dimensions[0]/4) {
         return 2;
     }
-    if (dataPosition > 300 && dataPosition < 400) {
+    if (dataPosition > 3*dimensions[0]/4 && dataPosition < 4*dimensions[0]/4) {
         return 3;
     }
 }
@@ -134,7 +140,7 @@ function keyPressed() {  // i.e evrytime i press a key!
 }
 // Draws the given grid over canvas
 function drawGrid() {
-    var w = 100;
+    var w = dimensions[0]/4;
     for (let i = 0; i < 4; i++) {
         for (let j = 0; j < 4; j++) {
             noFill();
