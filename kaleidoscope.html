@@ -12,7 +12,8 @@
     <!-- for P% -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>
     <!--  p5.js is a JS client-side library for creating graphic and interactive experiences-->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
 
 
     <!-- Bootstrap CSS -->
@@ -31,8 +32,8 @@
 
             <div class="collapse navbar-collapse" id="Navbar">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active"><a class="nav-link" href="#"></span>15 Puzzle</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./kaleidoscope.html"></span>Kaleidoscope</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./index.html"></span>15 Puzzle</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="#"></span>Kaleidoscope</a></li>
                 </ul>
             </div>
         </div>
@@ -40,8 +41,7 @@
     <header class="jumbotron">
         <div class="container">
             <div class="row row-header">
-                <h1 class="col-6 align-self-center">Moves:</h1>
-                <h1 class="col-6 align-self-center" id="moves">0</h1>
+                <h1 class="col-6 align-self-center" id="message">Draw Something.. </h1>
             </div>
 
         </div>
@@ -49,23 +49,34 @@
     <div class="container">
         <div class="row row-content align-items-center">
             <div class="col-12 col-sm-4 order-sm-last col-md-3">
-                <h3 id="message">All the best</h3>
+                <h3 id="message"></h3>
             </div>
         </div>
         <div class="row row-content align-items-center">
-            <div class="col-12 col-md-8" id="sketch-holder" style="text-align: center;">
+            <div class="col-12 col-sm-12 col-md-8" id="sketch-holder-for-kaleidoscope" style="text-align: center;">
                 <!-- Our sketch will go here! -->
             </div>
-            <div class="col-12 col-md-4" style="text-align: center;">
-                <button class="btn btn-warning" onclick="resetData()">Reset</button>
-                <button class="btn btn-warning" onclick="shuffleData()">Shuffle</button>
+            <div class="col-12 col-sm-12 col-md-4" style="text-align: center;">
+                <div class="row row-content align-items-center">
+                    <div class="col-12">
+                        <button class="btn btn-warning" onclick="screenFull()">Full Screen</button>
+                        <button class="btn btn-warning" onclick="clearScreen()">Clear</button>
+                        <button class="btn btn-warning" onclick="saveFile()">Save</button>
+                    </div>
+                    <div class="col-12">
+                        <label for="slicer" class=" col-form-label">Brush Size: </label>
+                        <input type="range" class="slider w-30" id="thicknessSlider" min="1" max="32" value="4">
+                    </div>
+                </div>
+
+                
             </div>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="game_logic.js"></script>
+    <script type="text/javascript" src="kaleidoscope.js"></script>
     <script type="text/javascript" src="config.js"></script>
 </body>
 
