@@ -5,18 +5,22 @@ let angle = 360 / symmetry;
 let slider;
 
 function setup() {
-
-  var canvas = createCanvas(500, 500);
+  if (windowWidth < 600) {
+    var canvas = createCanvas(windowWidth * 0.9, windowWidth * 0.9);
+  }
+  else {
+    var canvas = createCanvas(500, 500);
+  }
   canvas.parent('sketch-holder-for-kaleidoscope');
   angleMode(DEGREES);
   background(127);
 }
 function windowResized() {
-  if (windowWidth<600){
-    resizeCanvas(windowWidth*0.9, windowWidth*0.9);
+  if (windowWidth < 600) {
+    resizeCanvas(windowWidth * 0.9, windowWidth * 0.9);
     background(127);
   }
-  
+
 }
 // Save File Function
 function saveFile() {
