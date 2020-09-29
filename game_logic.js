@@ -207,3 +207,105 @@ function checkWin() {
         moves = 0
     }
 }
+function move_up(arr){
+    if(arr[1][0]==3){
+        return arr
+    }
+    arr[0][arr[1][0]][arr[1][1]] = arr[0][arr[1][0]+1][arr[1][1]]
+    arr[0][arr[1][0]+1][arr[1][1]] = 0
+    arr[1][0] = arr[1][0] + 1
+    return arr
+}
+function move_down(arr){
+    if(arr[1][0]==0){
+        return arr
+    }
+    arr[0][arr[1][0]][arr[1][1]] = arr[0][arr[1][0]-1][arr[1][1]]
+    arr[0][arr[1][0]-1][arr[1][1]] = 0
+    arr[1][0] = arr[1][0] - 1
+    return arr
+}
+function move_left(arr){
+    if(arr[1][1]==3){
+        return arr
+    }
+    arr[0][arr[1][0]][arr[1][1]] = arr[0][arr[1][0]][arr[1][1]+1]
+    arr[0][arr[1][0]][arr[1][1]+1] = 0
+    arr[1][1] = arr[1][1] + 1
+    return arr
+}
+function move_right(arr){
+    if(arr[1][1]==0){
+        return arr
+    }
+    arr[0][arr[1][0]][arr[1][1]] = arr[0][arr[1][0]][arr[1][1]-1]
+    arr[0][arr[1][0]][arr[1][1]-1] = 0
+    arr[1][1] = arr[1][1] - 1
+    return arr
+}
+function solvePuzzle(){
+    console.log("Started the solving process... stay calm.... and close your browser if it is stuck")
+    let goal = JSON.stringify([init_grid,[3,3]])
+    let start = JSON.stringify([grid,pos])
+    let pred={}
+    let visited = {}
+    queue = []
+    queue.push(start)
+    while(queue.length>0){
+        let tmp = queue.shift()
+        if (tmp === goal){
+            path=[]
+            while(tmp!=start){
+                path.push(pred[tmp][1])
+                tmp=pred[tmp][0]
+            }
+            path = path.reverse()
+            console.log(path)
+            return path
+        }
+        if(!(tmp in visited)){
+            visited[tmp]=true
+
+            tmpboard = JSON.parse(tmp)
+            tmpboard = move_up(tmpboard)
+            tmpboard = JSON.stringify(tmpboard) 
+            if (tmpboard!==tmp){
+                queue.push(tmpboard)
+                if (!(tmpboard in pred)){
+                    pred[tmpboard]=[tmp, 'up']
+                }
+            }
+            
+            tmpboard = JSON.parse(tmp)
+            tmpboard = move_down(tmpboard)
+            tmpboard = JSON.stringify(tmpboard) 
+            if (tmpboard!==tmp){
+                queue.push(tmpboard)
+                if (!(tmpboard in pred)){
+                    pred[tmpboard]=[tmp, 'down']
+                }
+            }
+
+            tmpboard = JSON.parse(tmp)
+            tmpboard = move_right(tmpboard)
+            tmpboard = JSON.stringify(tmpboard) 
+            if (tmpboard!==tmp){
+                queue.push(tmpboard)
+                if (!(tmpboard in pred)){
+                    pred[tmpboard]=[tmp, 'right']
+                }
+            }
+
+            tmpboard = JSON.parse(tmp)
+            tmpboard = move_left(tmpboard)
+            tmpboard = JSON.stringify(tmpboard) 
+            if (tmpboard!==tmp){
+                queue.push(tmpboard)
+                if (!(tmpboard in pred)){
+                    pred[tmpboard]=[tmp, 'left']
+                }
+            }
+        }
+    }
+    console.log('unable to solve')
+}
